@@ -7,7 +7,7 @@ const commonLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="container mx-auto">
+    <div className="container mx-auto p-2">
       <Navbar1 menu={menu} auth={auth} />
       {children}
     </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { ShoppingCart, User } from "lucide-react";
+import { Menu, ShoppingCart, User } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
@@ -13,6 +13,14 @@ import {
 } from "@/components/ui/navigation-menu";
 import { MenuItem, Navbar1Props } from "@/types/navbar.types";
 import Link from "next/link";
+import { Accordion } from "../ui/accordion";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "../ui/sheet";
 import { ModeToggle } from "./themeToggle";
 
 const Navbar1 = ({ menu, auth, className }: Navbar1Props) => {
@@ -69,17 +77,59 @@ const Navbar1 = ({ menu, auth, className }: Navbar1Props) => {
 
         {/* Mobile Menu */}
         <div className="block lg:hidden">
-          <div className="flex items-center gap-6">
+          <div className="flex items-center justify-between">
             {/* Logo */}
+
             <Link
               href="/"
               className="flex items-center gap-2 font-bold text-lg"
             >
-              <div className="flex h-8 w-8 items-center justify-center rounded bg-primary text-primary-foreground text-sm font-bold">
+              <div className="flex h-8 w-8 items-center justify-center rounded bg-primary text-primary-foreground text-lg font-bold">
                 🍱
               </div>
               <span className="hidden sm:inline">FoodHub</span>
             </Link>
+
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Menu className="size-4" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent className="overflow-y-auto">
+                <SheetHeader>
+                  <SheetTitle>
+                    <Link
+                      href="/"
+                      className="flex items-center gap-2 font-bold text-lg"
+                    >
+                      <div className="flex h-8 w-8 items-center justify-center rounded bg-primary text-primary-foreground text-lg font-bold">
+                        🍱
+                      </div>
+                      <span className="hidden sm:inline">FoodHub</span>
+                    </Link>
+                  </SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col gap-6 p-4">
+                  <Accordion
+                    type="single"
+                    collapsible
+                    className="flex w-full flex-col gap-4"
+                  >
+                    {menu?.map((item) => renderMobileMenuItem(item))}
+                  </Accordion>
+
+                  <div className="flex flex-col gap-3">
+                    <Button asChild variant="outline">
+                      <a href={auth?.login.url}>{auth?.login.title}</a>
+                    </Button>
+                    <Button asChild>
+                      <a href={auth?.signup.url}>{auth?.signup.title}</a>
+                    </Button>
+                  </div>
+                </div>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>
