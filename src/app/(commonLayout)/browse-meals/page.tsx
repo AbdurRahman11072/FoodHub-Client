@@ -1,5 +1,7 @@
+import MealsPage from "@/components/modules/common/meals/meals";
+
 const browseMealsPage = () => {
-  return <div>This is browse Meals page</div>;
+  return <MealsPage />;
 };
 
 export default browseMealsPage;

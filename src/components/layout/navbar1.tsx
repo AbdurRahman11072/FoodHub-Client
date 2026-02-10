@@ -52,12 +52,12 @@ const Navbar1 = ({ menu, auth, className }: Navbar1Props) => {
           <div className="flex gap-2">
             <Link href="/cart">
               <Button variant="ghost" size="icon">
-                <ShoppingCart className="h-8 w-8" size="32" />
+                <ShoppingCart className="h-12 w-12" size={48} />
               </Button>
             </Link>
             <Link href="/login">
-              <Button variant="ghost" size="icon">
-                <User className="h-8 w-8" size="32" />
+              <Button variant="ghost" size="default">
+                <User className="h-12 w-12" size={48} />
               </Button>
             </Link>
             <ModeToggle />
