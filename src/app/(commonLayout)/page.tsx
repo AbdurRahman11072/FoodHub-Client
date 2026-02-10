@@ -1,3 +1,4 @@
+import Cta from "@/components/modules/common/home/cta";
 import FeaturedMeals from "@/components/modules/common/home/featuredMeals";
 import Hero from "@/components/modules/common/home/hero";
 import TopRestaurant from "@/components/modules/common/home/topRestaurant";
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <FeaturedMeals />
       <TopRestaurant />
+      <Cta />
     </div>
   );
 }
