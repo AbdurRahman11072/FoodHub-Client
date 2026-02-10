@@ -1,3 +1,4 @@
+import { Footer } from "@/components/layout/footer";
 import { Navbar1 } from "@/components/layout/navbar1";
 import { auth, menu } from "@/types/navbar.types";
 
@@ -7,10 +8,11 @@ const commonLayout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <div className="container mx-auto p-2">
+    <main className="container mx-auto p-2">
       <Navbar1 menu={menu} auth={auth} />
       {children}
-    </div>
+      <Footer />
+    </main>
   );
 };
 
