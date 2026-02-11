@@ -1,5 +1,7 @@
+import RestaurantPage from "@/components/modules/common/restaurant/resturants";
+
 const restaurantsPage = () => {
-  return <div>This is restaurantsPage</div>;
+  return <RestaurantPage />;
 };
 
 export default restaurantsPage;
