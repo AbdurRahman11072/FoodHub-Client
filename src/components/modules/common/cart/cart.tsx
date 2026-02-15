@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Link from 'next/link';
 
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Minus, Plus, ShoppingCart, Trash2 } from "lucide-react";
-import { useState } from "react";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Minus, Plus, ShoppingCart, Trash2 } from 'lucide-react';
+import { useState } from 'react';
 
 interface CartItem {
   id: string;
@@ -17,18 +17,18 @@ interface CartItem {
 
 const INITIAL_ITEMS: CartItem[] = [
   {
-    id: "1",
-    name: "Margherita Pizza",
+    id: '1',
+    name: 'Margherita Pizza',
     price: 12.99,
     quantity: 1,
-    image: "🍕",
+    image: '🍕',
   },
   {
-    id: "2",
-    name: "Deluxe Burger",
+    id: '2',
+    name: 'Deluxe Burger',
     price: 14.99,
     quantity: 2,
-    image: "🍔",
+    image: '🍔',
   },
 ];
 
@@ -41,8 +41,8 @@ export default function CartPage() {
     } else {
       setItems(
         items.map((item) =>
-          item.id === id ? { ...item, quantity: newQuantity } : item,
-        ),
+          item.id === id ? { ...item, quantity: newQuantity } : item
+        )
       );
     }
   };
@@ -53,7 +53,7 @@ export default function CartPage() {
 
   const subtotal = items.reduce(
     (sum, item) => sum + item.price * item.quantity,
-    0,
+    0
   );
   const tax = subtotal * 0.1;
   const delivery = 2.99;
@@ -147,7 +147,7 @@ export default function CartPage() {
                 </Card>
               ))}
 
-              <Link href="/browse-meals">
+              <Link href="/meals">
                 <Button variant="outline" className="w-full bg-transparent">
                   Continue Shopping
                 </Button>
