@@ -15,7 +15,6 @@ const RestaurantDetailPage = async ({
   const { id } = await params;
   const { data } = await restaurantService.getRestaurantById(id);
   const restaurant = data;
-  console.log(restaurant.imageUrl);
 
   return (
     <main className="min-h-screen flex flex-col">

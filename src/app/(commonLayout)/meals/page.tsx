@@ -5,7 +5,6 @@ const browseMealsPage = async () => {
   const meal = await mealService.getAllMeal();
 
   const ALL_MEALS = meal.data;
-  console.log(ALL_MEALS);
 
   return <MealsPage ALL_MEALS={ALL_MEALS} />;
 };
