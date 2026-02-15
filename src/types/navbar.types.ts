@@ -26,7 +26,7 @@ export const menu = [
   { title: 'Home', url: '/' },
   {
     title: 'Browse Meals ',
-    url: '/browse-meals',
+    url: '/meals',
   },
   {
     title: 'Restaurants',

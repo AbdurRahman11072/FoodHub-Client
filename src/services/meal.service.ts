@@ -16,4 +16,16 @@ export const mealService = {
       return { data: null, error: 'Something went wrong' };
     }
   },
+  getMealsById: async function (id: string) {
+    try {
+      const res = await fetch(`${env.BACKEND_URL}/menu-items/${id}`);
+      const data = await res.json();
+      if (!data) {
+        return { data: null, error: 'Something went wrong' };
+      }
+      return data;
+    } catch (error) {
+      return { data: null, error: 'Something went wrong' };
+    }
+  },
 };
