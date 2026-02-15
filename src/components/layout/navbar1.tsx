@@ -1,31 +1,31 @@
-"use client";
+'use client';
 
-import { Menu, ShoppingCart, User } from "lucide-react";
+import { Menu, ShoppingCart, User } from 'lucide-react';
 
-import { cn } from "@/lib/utils";
+import { cn } from '@/lib/utils';
 
-import { Button } from "@/components/ui/button";
+import { Button } from '@/components/ui/button';
 import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
   NavigationMenuList,
-} from "@/components/ui/navigation-menu";
-import { MenuItem, Navbar1Props } from "@/types/navbar.types";
-import Link from "next/link";
-import { Accordion } from "../ui/accordion";
+} from '@/components/ui/navigation-menu';
+import { MenuItem, Navbar1Props } from '@/types/navbar.types';
+import Link from 'next/link';
+import { Accordion } from '../ui/accordion';
 import {
   Sheet,
   SheetContent,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
-} from "../ui/sheet";
-import { ModeToggle } from "./themeToggle";
+} from '../ui/sheet';
+import { ModeToggle } from './themeToggle';
 
-const Navbar1 = ({ menu, auth, className }: Navbar1Props) => {
+const Navbar1 = ({ menu, auth, className, session }: Navbar1Props) => {
   return (
-    <section className={cn("py-4", className)}>
+    <section className={cn('py-4', className)}>
       <div className="container">
         {/* Desktop Menu */}
         <nav className="hidden items-center justify-between lg:flex">
@@ -50,28 +50,33 @@ const Navbar1 = ({ menu, auth, className }: Navbar1Props) => {
           </div>
 
           <div className="flex gap-2">
+            <ModeToggle />
             <Link href="/cart">
               <Button variant="ghost" size="icon">
                 <ShoppingCart className="h-12 w-12" size={48} />
               </Button>
             </Link>
-            <Link href="/login">
-              <Button variant="ghost" size="default">
-                <User className="h-12 w-12" size={48} />
-              </Button>
-            </Link>
-            <ModeToggle />
-            <Button asChild variant="outline" size="sm">
-              <a href={auth?.login.url}>{auth?.login.title}</a>
-            </Button>
-            <Button
-              asChild
-              variant="default"
-              size="sm"
-              className="text-white font-sm"
-            >
-              <a href={auth?.signup.url}>{auth?.signup.title}</a>
-            </Button>
+            {session ? (
+              <Link href="/login">
+                <Button variant="ghost" size="default">
+                  <User className="h-12 w-12" size={48} />
+                </Button>
+              </Link>
+            ) : (
+              <div>
+                <Button asChild variant="outline" size="sm">
+                  <a href={auth?.login.url}>{auth?.login.title}</a>
+                </Button>
+                <Button
+                  asChild
+                  variant="default"
+                  size="sm"
+                  className="text-white font-sm"
+                >
+                  <a href={auth?.signup.url}>{auth?.signup.title}</a>
+                </Button>
+              </div>
+            )}
           </div>
         </nav>
 

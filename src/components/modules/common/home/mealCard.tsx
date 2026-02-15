@@ -1,9 +1,8 @@
-import { assets } from "@/assets/frontend_assets/assets";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { ShoppingCart, Star } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { ShoppingCart, Star } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface MealCardProps {
   id: string;
@@ -26,12 +25,14 @@ export function MealCard({
 }: MealCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-48 bg-muted overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
-        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-4xl">
-          <Image src={assets.food_1} alt={cuisine as string} />
-        </div>
-      </div>
+      <Image
+        src={image}
+        alt={name}
+        width={720}
+        height={600}
+        priority
+        className="w-full h-full -mt-6"
+      />
 
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">

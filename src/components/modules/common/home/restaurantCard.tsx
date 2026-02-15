@@ -1,7 +1,8 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Clock, MapPin, Star } from "lucide-react";
-import Link from "next/link";
+import { Button } from '@/components/ui/button';
+import { Card } from '@/components/ui/card';
+import { Clock, MapPin, Star } from 'lucide-react';
+import Image from 'next/image';
+import Link from 'next/link';
 
 interface ProviderCardProps {
   id: string;
@@ -26,11 +27,14 @@ export function RestaurantCard({
 }: ProviderCardProps) {
   return (
     <Card className="overflow-hidden hover:shadow-lg transition-shadow">
-      <div className="relative h-40 bg-muted overflow-hidden">
-        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center text-5xl">
-          {image}
-        </div>
-      </div>
+      <Image
+        src={image}
+        alt={name}
+        width={1000}
+        height={500}
+        className="w-full h-full -mt-6"
+        priority
+      />
 
       <div className="p-4">
         <div className="flex items-start justify-between mb-2">
@@ -51,7 +55,7 @@ export function RestaurantCard({
           {deliveryTime && (
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
               <Clock className="h-4 w-4" />
-              <span>{deliveryTime} min</span>
+              <span>{deliveryTime} </span>
             </div>
           )}
           {location && (
