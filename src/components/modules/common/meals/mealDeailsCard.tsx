@@ -85,7 +85,7 @@ const MealDeailsCard = ({ data }: { data: MealDetails }) => {
             </Card>
 
             {/* Price and Quantity */}
-            <div className="border-t border-border pt-6 grid grid-cols-2">
+            <div className="border-t border-border pt-6 grid grid-cols-1 md:grid-cols-2">
               <div>
                 <p className="text-sm text-muted-foreground mb-4">
                   Price per serving

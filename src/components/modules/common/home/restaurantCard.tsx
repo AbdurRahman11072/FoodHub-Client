@@ -69,7 +69,7 @@ export function RestaurantCard({
           </p>
         </div>
 
-        <Link href={`/providers/${id}`} className="w-full">
+        <Link href={`/restaurants/${id}`} className="w-full">
           <Button variant="outline" className="w-full bg-transparent">
             View Menu
           </Button>

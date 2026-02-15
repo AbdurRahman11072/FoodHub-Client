@@ -7,6 +7,7 @@ const mealDetailsPage = async ({
   params: Promise<{ id: string }>;
 }) => {
   const { id } = await params;
+  console.log();
 
   const { success, data, message } = await mealService.getMealsById(id);
 
