@@ -1,6 +1,6 @@
 // src/env.mjs
-import { createEnv } from "@t3-oss/env-nextjs"; // or core package
-import { z } from "zod";
+import { createEnv } from '@t3-oss/env-nextjs'; // or core package
+import { z } from 'zod';
 
 export const env = createEnv({
   /*
@@ -18,6 +18,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_BACKEND_URL: z.url(),
+    NEXT_PUBLIC_Base_BACKEND_URL: z.url(),
   },
   /*
    * Due to how Next.js bundles environment variables on Edge and Client,
@@ -29,5 +30,6 @@ export const env = createEnv({
     BACKEND_URL: process.env.BACKEND_URL,
     BACKEND_BETTER_AUTH_URL: process.env.BACKEND_BETTER_AUTH_URL,
     NEXT_PUBLIC_BACKEND_URL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    NEXT_PUBLIC_Base_BACKEND_URL: process.env.NEXT_PUBLIC_Base_BACKEND_URL,
   },
 });

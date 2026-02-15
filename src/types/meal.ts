@@ -26,6 +26,7 @@ export type MealDetails = {
   createdAt: string;
   updatedAt: string;
   resturant: {
+    id: string;
     name: string;
     rating: number;
     deliveryTime: string;

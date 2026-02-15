@@ -1,5 +1,8 @@
+'use client';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { env } from '@/env';
+import { authClient } from '@/lib/auth-client';
 import { MealDetails } from '@/types/meal';
 
 import {
@@ -12,8 +15,65 @@ import {
 } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { useState } from 'react';
+
+type ExtendedUser = {
+  address: string | null;
+  phoneNumber: string | null;
+  role: string;
+  banned: boolean;
+  banReason: string | null;
+  banExpires: Date | null;
+  // Include all default fields too
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  email: string;
+  emailVerified: boolean;
+  name: string;
+  image?: string | null;
+};
 
 const MealDeailsCard = ({ data }: { data: MealDetails }) => {
+  const [quantity, setQuantity] = useState<number>(1);
+  const userSession = authClient.useSession();
+
+  const session = userSession.data as { user: ExtendedUser } | null;
+
+  console.log(session?.user);
+
+  const customerId = session?.user.id;
+  const customerAddress = session?.user.address;
+
+  const increaseQuantity = () => {
+    setQuantity(quantity + 1);
+  };
+  const decreaseQuantity = () => {
+    if (quantity === 1) {
+      return setQuantity(quantity);
+    }
+    setQuantity(quantity - 1);
+  };
+
+  const addToCart = async () => {
+    const res = await fetch(`${env.NEXT_PUBLIC_BACKEND_URL}/orders`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        customerId: customerId,
+        restaurantId: data?.resturant.id,
+        menuItemId: data?.id,
+        quantity: quantity,
+        deliveryAddress: customerAddress,
+        status: 'ORDERD',
+      }),
+    });
+    const result = await res.json();
+    console.log(result);
+  };
+
   return (
     <div className="flex-1 py-8 md:py-12">
       <div className="mx-auto  px-4 sm:px-6 lg:px-8">
@@ -103,19 +163,33 @@ const MealDeailsCard = ({ data }: { data: MealDetails }) => {
                   <span className="text-sm font-medium">Quantity:</span>
                   <div className="flex items-center border border-border rounded-lg">
                     <button className="p-2 hover:bg-secondary">
-                      <Minus className="h-4 w-4" />
+                      <Minus
+                        className="h-4 w-4"
+                        onClick={() => {
+                          decreaseQuantity();
+                        }}
+                      />
                     </button>
 
-                    <span className="px-4 font-medium">5</span>
+                    <span className="px-4 font-medium">{quantity}</span>
                     <button className="p-2 hover:bg-secondary">
-                      <Plus className="h-4 w-4" />
+                      <Plus
+                        className="h-4 w-4"
+                        onClick={() => {
+                          increaseQuantity();
+                        }}
+                      />
                     </button>
                   </div>
                 </div>
 
                 {/* Buttons */}
                 <div className="flex gap-3">
-                  <Button size="lg" className="flex-1 gap-2">
+                  <Button
+                    size="lg"
+                    className="flex-1 gap-2"
+                    onClick={() => addToCart()}
+                  >
                     <ShoppingCart className="h-5 w-5" />
                     Add to Cart
                   </Button>
